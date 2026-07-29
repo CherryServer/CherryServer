@@ -18,7 +18,8 @@ allprojects {
 
 	java {
 		toolchain {
-			languageVersion = JavaLanguageVersion.of(21)
+			// Java 21 is old versions <= v2.2.0-predemo
+			languageVersion = JavaLanguageVersion.of(25)
 		}
 	}
 
@@ -28,7 +29,8 @@ allprojects {
 
 	dependencies {
 		checkstyle("com.puppycrawl.tools:checkstyle:$checkstyleVersion")
-		compileOnly("net.minestom:minestom-snapshots:$minestomVersion")
+		// net.minestom:minestom-snapshots - Is old version
+		compileOnly("net.minestom:minestom:$minestomVersion")
 		compileOnly("ch.qos.logback:logback-classic:$logbackVersion")
 		compileOnly("org.json:json:$jsonVersion")
 	}
