@@ -2,7 +2,7 @@ package delta.cion.tokyo.server.command;
 
 import delta.cion.tokyo.api.command.DeltaCommand;
 import delta.cion.tokyo.api.locales.Localize;
-import delta.cion.tokyo.api.online.WhiteList;
+import delta.cion.tokyo.api.online.lists.WhiteList;
 import delta.cion.tokyo.api.permission.PermissionManager;
 import net.minestom.server.command.CommandSender;
 import net.minestom.server.command.builder.Command;

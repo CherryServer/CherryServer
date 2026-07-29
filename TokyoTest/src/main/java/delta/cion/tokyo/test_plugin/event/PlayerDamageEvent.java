@@ -2,6 +2,7 @@ package delta.cion.tokyo.test_plugin.event;
 
 import delta.cion.tokyo.api.event.DeltaEvent;
 import delta.cion.tokyo.test_plugin.pvp.CountDamage;
+import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.Entity;
 import net.minestom.server.entity.LivingEntity;
 import net.minestom.server.entity.Player;
@@ -10,7 +11,8 @@ import net.minestom.server.entity.damage.DamageType;
 import net.minestom.server.event.entity.EntityAttackEvent;
 import net.minestom.server.event.entity.EntityDamageEvent;
 import net.minestom.server.item.ItemStack;
-import net.minestom.server.registry.DynamicRegistry;
+import net.minestom.server.registry.RegistryKey;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,24 +42,25 @@ public class PlayerDamageEvent {
 				return;
 			}
 
-			DynamicRegistry.Key<DamageType> damageType = null;
+			RegistryKey<@NotNull DamageType> damageTypeRegistryKey = null;
+
 			Entity attacker = event.getEntity();
 			float damageCount = 0f;
 
 			if (attacker instanceof Player player) {
-				damageType = DamageType.PLAYER_ATTACK;
+				damageTypeRegistryKey = DamageType.PLAYER_ATTACK;
 				ItemStack item = player.getItemInMainHand();
 				damageCount = CountDamage.countDamage(item, attacker);
-			} else if (!(attacker instanceof LivingEntity livingAttacker)) {
-				damageType = DamageType.MOB_ATTACK;
+			} else if (!(attacker instanceof LivingEntity)) {
+				damageTypeRegistryKey = DamageType.MOB_ATTACK;
 				damageCount = 1f;
 			}
 			else {
-				damageType = DamageType.MOB_ATTACK;
+				damageTypeRegistryKey = DamageType.MOB_ATTACK;
 				damageCount = 1f;
 			}
 
-			Damage damage = new Damage(damageType, target, attacker, target.getPosition(), damageCount);
+			Damage damage = new Damage(damageTypeRegistryKey, target, attacker, target.getPosition(), damageCount);
 			livingTarget.damage(damage);
 		});
 	}

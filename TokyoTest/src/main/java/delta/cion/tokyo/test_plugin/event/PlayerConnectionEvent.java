@@ -1,7 +1,7 @@
 package delta.cion.tokyo.test_plugin.event;
 
 import delta.cion.tokyo.api.locales.Localize;
-import delta.cion.tokyo.api.online.WhiteList;
+import delta.cion.tokyo.api.online.lists.WhiteList;
 import delta.cion.tokyo.api.event.DeltaEvent;
 import delta.cion.tokyo.test_plugin.TestPlugin;
 import delta.cion.tokyo.test_plugin.util.InfoBook;

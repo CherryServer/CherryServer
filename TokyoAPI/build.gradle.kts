@@ -14,7 +14,8 @@ group = "delta.cion.tokyo.api"
 version = projectVersion
 
 dependencies {
-	implementation("net.minestom:minestom-snapshots:$minestomVersion")
+	// net.minestom:minestom-snapshots =< 26.2
+	implementation("net.minestom:minestom:$minestomVersion")
 	implementation("ch.qos.logback:logback-classic:${logbackVersion}")
 	implementation("com.github.luben:zstd-jni:${zstdVersion}")
 	implementation("org.json:json:${jsonVersion}")

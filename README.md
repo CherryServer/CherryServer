@@ -8,7 +8,7 @@
 
 ```txt
 Простой майнкрафт сервер, над которым я работаю.
-Базируется на Minestom, версии 1.21.4
+Базируется на Minestom, версии 26.2
 	(Для версии новее нужна более новая IDE
 		(Нууу вообще нет, но IDE моей версии не поддерживает 9 Gradle нативно))
 
@@ -56,7 +56,7 @@ Lavender
 	(Идея реализации Bukkit API & Spigot API)
 	(Само ядро их содержать не будет, но будет модуль совместимости)
 	Оригинальный репо: https://github.com/wildmaster84/Lavender
-	Реализация: https://github.com/DestroyTokyo/DeBukkit 
+	Реализация: https://github.com/DestroyTokyo/DeBukkit
 ```
 
 

@@ -20,7 +20,7 @@ jobs:
             -   name: Setup Gradle
                 uses: gradle/actions/setup-gradle@v3
                 with:
-                    gradle-version: '8.5'
+                    gradle-version: '9.6.1'
 
             -   name: Build
                 run: gradle build
@@ -28,7 +28,7 @@ jobs:
             -   name: Upload
                 uses: actions/upload-artifact@v4
                 with:
-                    name: CherryBuild
+                    name: TokyoBuild
                     path: |
                         Tokyo/build/libs/*.jar
                         TokyoAPI/build/libs/*.jar
