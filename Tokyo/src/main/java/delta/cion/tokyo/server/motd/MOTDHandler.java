@@ -39,7 +39,7 @@ public class MOTDHandler {
 		String serverDescription = ServerBranding.getBrandName() + " Server";
 
 		Status.Builder rawResponse = new ServerMOTD()
-			.setMOTDVersion(ServerBranding.getBrandName() + " 1.21.4")
+			.setMOTDVersion(ServerBranding.getBrandName() + " " + MinecraftServer.VERSION_NAME)
 			.setMOTDDescription(serverDescription)
 			.getRaw();
 
