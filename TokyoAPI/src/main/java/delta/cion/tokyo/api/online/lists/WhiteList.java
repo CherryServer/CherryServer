@@ -1,4 +1,4 @@
-package delta.cion.tokyo.api.online;
+package delta.cion.tokyo.api.online.lists;
 
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.Player;

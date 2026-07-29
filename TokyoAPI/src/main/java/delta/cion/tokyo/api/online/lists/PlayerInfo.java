@@ -1,4 +1,4 @@
-package delta.cion.tokyo.api.online;
+package delta.cion.tokyo.api.online.lists;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

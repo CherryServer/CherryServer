@@ -1,14 +1,14 @@
 package delta.cion.tokyo.server.motd;
 
 import delta.cion.tokyo.api.ServerBranding;
+import delta.cion.tokyo.api.online.ServerMOTD;
 import delta.cion.tokyo.server.Server;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.server.ServerListPingEvent;
 import net.minestom.server.network.player.PlayerConnection;
-import net.minestom.server.ping.ResponseData;
 import delta.cion.tokyo.api.event.DeltaEvent;
-import net.minestom.server.utils.identity.NamedAndIdentified;
+import net.minestom.server.ping.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Base64;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Consumer;
 
@@ -36,32 +36,40 @@ public class MOTDHandler {
 
 		Collection<Player> players = MinecraftServer.getConnectionManager().getOnlinePlayers();
 
-		ResponseData response = new ServerMOTD()
+		String serverDescription = ServerBranding.getBrandName() + " Server";
+
+		Status.Builder rawResponse = new ServerMOTD()
 			.setMOTDVersion(ServerBranding.getBrandName() + " 1.21.4")
-			.setMOTDDescription(ServerBranding.getBrandName() + " Server")
-			.setMOTDMaxPlayer(players.size())
-			.setMOTDOnline(-1)
-			.get();
+			.setMOTDDescription(serverDescription)
+			.getRaw();
 
+		rawResponse.playerInfo(Status.PlayerInfo.builder()
+			.onlinePlayers(players.size())
+			.maxPlayers(-1)
+			.sample(new ArrayList<>(players))
+			.build()
+		);
 
-		for (Player player : players)
-			response.addEntry(NamedAndIdentified.of(player.getName(), player.getUuid()));
-		if (buildServerIcon() != null) response.setFavicon(buildServerIcon());
-		event.setResponseData(response);
+		if (buildServerIcon() != null)
+			rawResponse.favicon(buildServerIcon());
+
+		Status response = rawResponse.build();
+
+		event.setStatus(response);
 	};
 
-	private static String buildServerIcon() {
+	private static byte[] buildServerIcon() {
 		if (!SERVER_ICON.toFile().exists()) return null;
+
 		try {
 			byte[] data = Files.readAllBytes(SERVER_ICON);
 			BufferedImage image = ImageIO.read(new ByteArrayInputStream(data));
 
 			if (image == null) return null;
-			if (image.getWidth() != image.getHeight()
-				|| image.getHeight() > 64) return null;
+			if (image.getWidth() > 64) return null;
+			if (image.getWidth() != image.getHeight()) return null;
 
-			String base64 = Base64.getEncoder().encodeToString(data);
-			return "data:image/png;base64," + base64;
+			return data;
 		} catch (IOException e) {
 			LOGGER.warn("Incorrect image {}", SERVER_ICON);
 			return null;
