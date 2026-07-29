@@ -42,28 +42,24 @@ public class PlayerDamageEvent {
 				return;
 			}
 
-			DamageType damageType = null;
+			RegistryKey<@NotNull DamageType> damageTypeRegistryKey = null;
 
 			Entity attacker = event.getEntity();
 			float damageCount = 0f;
 
 			if (attacker instanceof Player player) {
-				damageType = DamageType.PLAYER_ATTACK.asValue();
+				damageTypeRegistryKey = DamageType.PLAYER_ATTACK;
 				ItemStack item = player.getItemInMainHand();
 				damageCount = CountDamage.countDamage(item, attacker);
-			} else if (!(attacker instanceof LivingEntity livingAttacker)) {
-				damageType = DamageType.MOB_ATTACK.asValue();
+			} else if (!(attacker instanceof LivingEntity)) {
+				damageTypeRegistryKey = DamageType.MOB_ATTACK;
 				damageCount = 1f;
 			}
 			else {
-				damageType = DamageType.MOB_ATTACK.asValue();
+				damageTypeRegistryKey = DamageType.MOB_ATTACK;
 				damageCount = 1f;
 			}
 
-			assert damageType != null;
-			RegistryKey<@NotNull DamageType> damageTypeRegistryKey = MinecraftServer.getDamageTypeRegistry().getKey(damageType);
-
-			assert damageTypeRegistryKey != null;
 			Damage damage = new Damage(damageTypeRegistryKey, target, attacker, target.getPosition(), damageCount);
 			livingTarget.damage(damage);
 		});
