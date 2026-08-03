@@ -11,7 +11,13 @@ val jsonVersion: String by project
 val zstdVersion: String by project
 
 group = "delta.cion.tokyo.api"
+
 version = projectVersion
+
+val commitHash = providers.exec {
+	commandLine("git", "rev-parse", "--short=8", "HEAD")
+}.standardOutput.asText.get().trim()
+
 
 dependencies {
 	// net.minestom:minestom-snapshots =< 26.2
@@ -40,7 +46,10 @@ tasks {
 	processResources {
 		filteringCharset = "UTF-8"
 		filesMatching("tokyo.properties") {
-			expand("version" to projectVersion)
+			expand(
+				"version" to projectVersion,
+				"commit_hash" to commitHash
+			)
 		}
 	}
 
