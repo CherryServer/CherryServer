@@ -2,7 +2,6 @@ package delta.cion.tokyo.test_plugin.event;
 
 import delta.cion.tokyo.api.event.DeltaEvent;
 import delta.cion.tokyo.test_plugin.pvp.CountDamage;
-import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.Entity;
 import net.minestom.server.entity.LivingEntity;
 import net.minestom.server.entity.Player;

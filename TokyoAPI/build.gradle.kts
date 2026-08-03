@@ -6,6 +6,7 @@ plugins {
 val projectVersion: String by project
 
 val minestomVersion: String by project
+val miniMessageVersion: String by project
 val logbackVersion: String by project
 val jsonVersion: String by project
 val zstdVersion: String by project
@@ -22,6 +23,8 @@ val commitHash = providers.exec {
 dependencies {
 	// net.minestom:minestom-snapshots =< 26.2
 	implementation("net.minestom:minestom:$minestomVersion")
+	implementation("net.kyori:adventure-text-minimessage:$miniMessageVersion")
+
 	implementation("ch.qos.logback:logback-classic:${logbackVersion}")
 	implementation("com.github.luben:zstd-jni:${zstdVersion}")
 	implementation("org.json:json:${jsonVersion}")

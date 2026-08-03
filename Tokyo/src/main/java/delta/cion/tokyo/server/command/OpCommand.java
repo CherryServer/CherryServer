@@ -9,12 +9,8 @@ import net.minestom.server.command.builder.CommandContext;
 import net.minestom.server.command.builder.arguments.ArgumentString;
 import net.minestom.server.command.builder.arguments.ArgumentType;
 import net.minestom.server.entity.Player;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class OpCommand  extends DeltaCommand {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReloadCommand.class);
 
 	public OpCommand() {
 		super(new Command("op"));

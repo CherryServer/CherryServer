@@ -80,6 +80,7 @@ public class Server {
 
 		// Util
 		new WhitelistCommand().register();
+		new VersionCommand().register();
 
 		// Not command bruh
 		new ConsoleHandler();
