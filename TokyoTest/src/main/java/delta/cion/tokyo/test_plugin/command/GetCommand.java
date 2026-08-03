@@ -66,9 +66,4 @@ public class GetCommand extends DeltaCommand {
 		((Player) sender).setItemInHand(PlayerHand.MAIN, ItemStack.AIR);
 	}
 
-	private static boolean isConsole(CommandSender sender) {
-		if (sender instanceof Player) return false;
-		sender.sendMessage("Command for players only!");
-		return true;
-	}
 }

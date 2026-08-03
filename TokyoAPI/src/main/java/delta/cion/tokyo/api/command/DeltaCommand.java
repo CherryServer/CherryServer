@@ -1,7 +1,9 @@
 package delta.cion.tokyo.api.command;
 
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.command.CommandSender;
 import net.minestom.server.command.builder.Command;
+import net.minestom.server.entity.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +46,12 @@ public class DeltaCommand implements AutoCloseable {
 
 	public void registerSubPermissions() {
 
+	}
+
+	protected static boolean isConsole(CommandSender sender) {
+		if (sender instanceof Player) return false;
+		sender.sendMessage("Command for players only!");
+		return true;
 	}
 
 	@Override
