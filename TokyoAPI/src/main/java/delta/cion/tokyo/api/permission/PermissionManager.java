@@ -1,6 +1,7 @@
 package delta.cion.tokyo.api.permission;
 
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.command.CommandSender;
 import net.minestom.server.entity.Player;
 import net.minestom.server.network.ConnectionManager;
 
@@ -68,6 +69,11 @@ public class PermissionManager {
 			if (permissionList.contains(parentPerm)) return true;
 		}
 		return false;
+	}
+
+	public static boolean hasPermission(CommandSender sender, String permission) {
+		Player player = (Player) sender;
+		return hasPermission(player.getUsername(), permission);
 	}
 
 	public static boolean hasPermission(Player player, String permission) {

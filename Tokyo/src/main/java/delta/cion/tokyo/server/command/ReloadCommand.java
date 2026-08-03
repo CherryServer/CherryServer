@@ -8,12 +8,8 @@ import net.minestom.server.command.CommandSender;
 import net.minestom.server.command.builder.Command;
 import net.minestom.server.command.builder.CommandContext;
 import net.minestom.server.entity.Player;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ReloadCommand extends DeltaCommand {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReloadCommand.class);
 
 	public ReloadCommand() {
 		super(new Command("reload"));

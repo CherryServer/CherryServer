@@ -13,15 +13,16 @@ public class ServerBranding {
 	private static final String CHERRY_BRANDING_FILE = "/tokyo.properties";
 
 	static {
-		String version = "unknown";
+		String version = "", commit = "";
 		try (InputStream is = ServerBranding.class.getResourceAsStream(CHERRY_BRANDING_FILE)) {
 			if (is != null) {
 				Properties props = new Properties();
 				props.load(is);
 				version = props.getProperty("version", "unknown");
+				commit = props.getProperty("commit_hash", "unknown");
 			} else throw new RuntimeException("Cannot parse ["+CHERRY_BRANDING_FILE+"] file!");
 		} catch (Exception ignored) {}
-		SERVER_VERSION = version;
+		SERVER_VERSION = "%s_(%s)".formatted(version, commit);
 	}
 
 	public static String getBrandName() {

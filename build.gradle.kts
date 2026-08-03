@@ -6,10 +6,12 @@ plugins {
     id("com.gradleup.shadow") version("8.3.0")
 }
 
-val checkstyleVersion: String by project
 val minestomVersion: String by project
+val miniMessageVersion: String by project
 val logbackVersion: String by project
 val jsonVersion: String by project
+val zstdVersion: String by project
+
 
 allprojects {
 	apply(plugin = "java")
@@ -27,15 +29,17 @@ allprojects {
 		configFile = rootProject.file(".checkstyle/config.xml")
 	}
 
-	dependencies {
-		checkstyle("com.puppycrawl.tools:checkstyle:$checkstyleVersion")
-		// net.minestom:minestom-snapshots - Is old version
-		compileOnly("net.minestom:minestom:$minestomVersion")
-		compileOnly("ch.qos.logback:logback-classic:$logbackVersion")
-		compileOnly("org.json:json:$jsonVersion")
-	}
-
 	repositories {
 		mavenCentral()
+	}
+
+	dependencies {
+		// net.minestom:minestom-snapshots =< 26.2
+		compileOnly("net.minestom:minestom:$minestomVersion")
+		compileOnly("net.kyori:adventure-text-minimessage:$miniMessageVersion")
+
+		compileOnly("ch.qos.logback:logback-classic:${logbackVersion}")
+		compileOnly("com.github.luben:zstd-jni:${zstdVersion}")
+		compileOnly("org.json:json:${jsonVersion}")
 	}
 }
