@@ -67,9 +67,4 @@ public class Gamemode extends DeltaCommand {
 		sender.sendMessage("Gamemode updated for " + target.getUsername());
 	}
 
-	private static boolean isConsole(CommandSender sender) {
-		if (sender instanceof Player) return false;
-		sender.sendMessage("Command for players only!");
-		return true;
-	}
 }
