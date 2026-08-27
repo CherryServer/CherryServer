@@ -17,6 +17,7 @@ test/
 build
 gradlew
 gradlew.bat
+build_Tokyo
 
 # <= Maven =>
 target/

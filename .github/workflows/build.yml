@@ -29,8 +29,5 @@ jobs:
                 uses: actions/upload-artifact@v4
                 with:
                     name: TokyoBuild
-                    path: |
-                        Tokyo/build/libs/*.jar
-                        TokyoAPI/build/libs/*.jar
-                        TokyoTest/build/libs/*.jar
+                    path: build_Tokyo/*.jar
                     if-no-files-found: error
