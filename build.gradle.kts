@@ -12,7 +12,6 @@ val logbackVersion: String by project
 val jsonVersion: String by project
 val zstdVersion: String by project
 
-
 allprojects {
 	apply(plugin = "java")
 	apply(plugin = "checkstyle")
@@ -34,7 +33,7 @@ allprojects {
 	}
 
 	dependencies {
-		// net.minestom:minestom-snapshots =< 26.2
+		// net.minestom:minestom =< 26.2
 		compileOnly("net.minestom:minestom:$minestomVersion")
 		compileOnly("net.kyori:adventure-text-minimessage:$miniMessageVersion")
 
@@ -42,4 +41,10 @@ allprojects {
 		compileOnly("com.github.luben:zstd-jni:${zstdVersion}")
 		compileOnly("org.json:json:${jsonVersion}")
 	}
+}
+
+tasks.register<Copy>("buildTokyo") {
+	from(subprojects.map { file("${it.buildDir}/libs") })
+	into(rootProject.layout.buildDirectory.dir("$rootDir/build_Tokyo"))
+	dependsOn(subprojects.map { it.tasks.build })
 }

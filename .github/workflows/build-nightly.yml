@@ -40,10 +40,7 @@ jobs:
                         ```txt
                         ${{ steps.date.outputs.timestamp }}
                         ```
-                    files: |
-                        Tokyo/build/libs/*.jar
-                        TokyoAPI/build/libs/*.jar
-                        TokyoTest/build/libs/*.jar
+                    files: build_Tokyo/*.jar
                     allow_updates: true
                     prerelease: true
                     token: ${{ secrets.GITHUB_TOKEN }}
