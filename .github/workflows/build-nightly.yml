@@ -24,7 +24,7 @@ jobs:
                     gradle-version: '9.6.1'
 
             -   name: Build
-                run: gradle build
+                run: gradle buildTokyo
 
             -   name: Get current date
                 id: date
