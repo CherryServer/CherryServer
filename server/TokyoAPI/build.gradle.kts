@@ -71,6 +71,7 @@ publishing {
 	publications {
 		create<MavenPublication>("mavenJava") {
 			from(components["java"])
+
 			groupId = group.toString()
 			artifactId = "tokyo_api"
 			version = version

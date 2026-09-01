@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-	compileOnly(project(":TokyoAPI"))
+	compileOnly(project(":server:TokyoAPI"))
 }
 
 tasks {
@@ -25,7 +25,7 @@ tasks {
 	}
 
 	shadowJar {
-		dependsOn(":TokyoAPI:shadowJar")
+		dependsOn(":server:TokyoAPI:shadowJar")
 		mergeServiceFiles()
 		archiveClassifier.set("")
 	}

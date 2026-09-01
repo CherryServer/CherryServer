@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.register
+
 plugins {
     id("java")
     kotlin("jvm") version "2.1.10"
@@ -45,6 +47,7 @@ allprojects {
 
 tasks.register<Copy>("buildTokyo") {
 	from(subprojects.map { file("${it.buildDir}/libs") })
+	exclude("server.jar", "extensions.jar")
 	into(rootProject.layout.buildDirectory.dir("$rootDir/build_Tokyo"))
-	dependsOn(subprojects.map { it.tasks.build })
+	dependsOn(tasks.build)
 }
